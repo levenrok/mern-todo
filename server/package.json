@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend for Todo List Application built with the MERN Stack",
+  "license": "MIT",
+  "author": "levenrok",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file .env server.js",
+    "dev": "node --watch --env-file .env.development.local server.js",
+    "standard": "standard",
+    "standard-fix": "standard --fix",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "standard": "^17.1.2",
+    "supertest": "^7.1.1"
+  }
+}

@@ -11,7 +11,7 @@
     "dev": "node --watch --env-file .env.development.local server.js",
     "standard": "standard",
     "standard-fix": "standard --fix",
-    "test": "mocha 'tests/*.test.js'"
+    "test": "mocha 'tests/*.test.js' helpers/test.helper.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -23,6 +23,7 @@
     "@types/mocha": "^10.0.10",
     "chai": "^5.2.0",
     "mocha": "^11.5.0",
+    "mongodb-memory-server": "^10.1.4",
     "standard": "^17.1.2",
     "supertest": "^7.1.1"
   }

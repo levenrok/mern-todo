@@ -9,7 +9,25 @@ on:
       - main
 
 jobs:
+  check-formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            server
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: NPM Clean Install
+        run: npm ci
+        working-directory: ./server
+      - name: NPM Check Formatting
+        run: npm run standard
+        working-directory: ./server
   test:
+    needs: check-formatting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

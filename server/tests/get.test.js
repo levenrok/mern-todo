@@ -1,6 +1,7 @@
 import request from 'supertest'
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
+import sinon from 'sinon'
 
 import app from '../app.js'
 import Todo from '../models/todo.model.js'
@@ -36,5 +37,22 @@ describe('GET /', () => {
     for (const testTodo of testTodos) {
       expect(responseTodos).to.deep.include(testTodo)
     }
+  })
+})
+
+describe('GET /todo (Error Handling)', () => {
+  it('should return status 500 and an error message if Todo.find throws', async function () {
+    sinon.stub(Todo, 'find').throws(new Error('Database Failure'))
+
+    const response = await request(app).get('/todo')
+
+    expect(response.statusCode).to.equal(500)
+    expect(response.body).to.deep.equal({
+      success: false,
+      error: {
+        code: 500,
+        message: 'Internal Server Error'
+      }
+    })
   })
 })

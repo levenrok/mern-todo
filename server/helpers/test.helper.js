@@ -1,4 +1,5 @@
-import { before, after, beforeEach } from 'mocha'
+import { before, after, beforeEach, afterEach } from 'mocha'
+import sinon from 'sinon'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 
@@ -43,4 +44,8 @@ beforeEach(async function () {
     console.error('Error clearing Todo collection:', error)
     throw error
   }
+})
+
+afterEach(() => {
+  sinon.restore()
 })
